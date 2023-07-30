@@ -92,6 +92,7 @@ def update(request, id):
                 <p><textarea name="body" placeholder="body">{selectedTopic}</textarea></p>
                 <p><input type="submit"></p>
             </form>
+            동영상 : 13 - 4:30
         '''
         return HttpResponse(HTMLTemplate(article, id))
     elif request.method == "POST":
