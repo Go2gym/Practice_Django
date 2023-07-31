@@ -79,6 +79,7 @@ def create(request):
 @csrf_exempt
 def update(request, id):
     global topics
+    selectedTopic = {}
     if request.method == 'GET':
         for topic in topics:
             if topic['id'] == int(id):
@@ -86,16 +87,21 @@ def update(request, id):
                     "title":topic['title'],
                     "body":topic['body']
                 }
-        article = '''
-            <form action="/update/{id}" method="post">
-                <p><input type="text" name="title" placeholder="title" value={selectedTopic["title"]}></p>
-                <p><textarea name="body" placeholder="body">{selectedTopic}</textarea></p>
+        article = f'''
+            <form action="/update/{id}/" method="post">
+                <p><input type="text" name="title" placeholder="title" value={selectedTopic['title']}></p>
+                <p><textarea name="body" placeholder="body">{selectedTopic['body']}</textarea></p>
                 <p><input type="submit"></p>
             </form>
-            동영상 : 13 - 4:30
         '''
         return HttpResponse(HTMLTemplate(article, id))
     elif request.method == "POST":
+        title = request.POST['title']
+        body = request.POST['body'];
+        for topic in topics:
+            if topic['id'] == int(id):
+                topic['title'] = title
+                topic['body'] = body
         return redirect(f'/read/{id}')
 
 @csrf_exempt
@@ -109,3 +115,9 @@ def delete(request):
                 newTopics.append(topic)
         topics = newTopics
         return redirect('/')
+
+
+
+def blog(request, id):
+    global topics
+    
