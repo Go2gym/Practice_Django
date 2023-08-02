@@ -23,11 +23,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure--m4cj-p&%v&ki7x5-x)9+=oo*(456@uir9&j-wed&@qgj&r(v+'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["8000-go2gym-practicedjango-adbr5seqvcm.ws-us102.gitpod.io"]
 
-
+CSRF_TRUSTED_ORIGINS = ['https://8000-go2gym-practicedjango-adbr5seqvcm.ws-us102.gitpod.io']
 # Application definition
 
 INSTALLED_APPS = [
